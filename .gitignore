@@ -12,6 +12,7 @@ tmp/
 local.properties
 .loadpath
 .recommenders
+.DS_Store
 
 #######  Java annotation processor (APT) ########
 .factorypath
@@ -52,4 +53,11 @@ build/
 
 #################### VS Code ####################
 .vscode/
+<<<<<<< HEAD
 .envrc
+=======
+
+#################### Java Design Patterns #######
+etc/Java Design Patterns.urm.puml
+serialized-entity/output.txt
+>>>>>>> upstream/master

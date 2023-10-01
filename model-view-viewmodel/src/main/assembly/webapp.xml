@@ -1,7 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
+    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+
     The MIT License
-    Copyright © 2014-2021 Ilkka Seppälä
+    Copyright © 2014-2022 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +25,25 @@
     THE SOFTWARE.
 
 -->
-<assembly
-	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
-	<id>webapp</id>
-	<formats>
-		<format>zip</format>
-	</formats>
-	<fileSets>
-		<fileSet>
-			<directory>${project.basedir}/src/main/java</directory>
-			<outputDirectory>/${project.artifactId}/src</outputDirectory>
-		</fileSet>
-		<fileSet>
-			<directory>${project.basedir}/src/main/webapp</directory>
-			<outputDirectory>/${project.artifactId}/WebContent</outputDirectory>
-		</fileSet>
-	</fileSets>
-	<files>
-		<file>
-			<source>${project.build.directory}/${project.artifactId}.war</source>
-			<outputDirectory>/</outputDirectory>
-		</file>
-	</files>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+  <id>webapp</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/src/main/java</directory>
+      <outputDirectory>/${project.artifactId}/src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/src/main/webapp</directory>
+      <outputDirectory>/${project.artifactId}/WebContent</outputDirectory>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <source>${project.build.directory}/${project.artifactId}.war</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
 </assembly>

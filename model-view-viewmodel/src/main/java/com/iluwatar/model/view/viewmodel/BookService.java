@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +27,9 @@ package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
 
+/**
+ * Class representing a service to load books.
+ */
 public interface BookService {
   /* List all books
    * @return all books

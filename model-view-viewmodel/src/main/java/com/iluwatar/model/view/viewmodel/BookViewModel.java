@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
-
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
+/**
+ * BookViewModel class.
+ */
 public class BookViewModel {
   
   @WireVariable
@@ -55,7 +58,7 @@ public class BookViewModel {
    * and used to delete the selected book from the list of books. 
    */
   @Command
-  @NotifyChange({"selectedBook","bookList"})
+  @NotifyChange({"selectedBook", "bookList"})
   public void deleteBook() {
     if (selectedBook != null) {
       getBookList().remove(selectedBook);

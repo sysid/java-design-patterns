@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Memento
-folder: memento
-permalink: /patterns/memento/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -20,10 +17,10 @@ object can be restored to this state later.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We are working on astrology application where we need to analyze star properties over time. We are 
-> creating snapshots of star state using Memento pattern.
+> We are working on an astrology application where we need to analyze star properties over time. We 
+> are creating snapshots of star states using the Memento pattern.
 
 In plain words
 
@@ -51,7 +48,7 @@ public enum StarType {
 ```
 
 Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
-need manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
+need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 ```java
 public interface StarMemento {
@@ -59,70 +56,62 @@ public interface StarMemento {
 
 public class Star {
 
-  private StarType type;
-  private int ageYears;
-  private int massTons;
-
-  public Star(StarType startType, int startAge, int startMass) {
-    this.type = startType;
-    this.ageYears = startAge;
-    this.massTons = startMass;
-  }
-
-  public void timePasses() {
-    ageYears *= 2;
-    massTons *= 8;
-    switch (type) {
-      case RED_GIANT:
-        type = StarType.WHITE_DWARF;
-        break;
-      case SUN:
-        type = StarType.RED_GIANT;
-        break;
-      case SUPERNOVA:
-        type = StarType.DEAD;
-        break;
-      case WHITE_DWARF:
-        type = StarType.SUPERNOVA;
-        break;
-      case DEAD:
-        ageYears *= 2;
-        massTons = 0;
-        break;
-      default:
-        break;
-    }
-  }
-
-  StarMemento getMemento() {
-    var state = new StarMementoInternal();
-    state.setAgeYears(ageYears);
-    state.setMassTons(massTons);
-    state.setType(type);
-    return state;
-  }
-
-  void setMemento(StarMemento memento) {
-    var state = (StarMementoInternal) memento;
-    this.type = state.getType();
-    this.ageYears = state.getAgeYears();
-    this.massTons = state.getMassTons();
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%s age: %d years mass: %d tons", type.toString(), ageYears, massTons);
-  }
-
-  private static class StarMementoInternal implements StarMemento {
-
     private StarType type;
     private int ageYears;
     private int massTons;
 
-    // setters and getters ->
+    public Star(StarType startType, int startAge, int startMass) {
+        this.type = startType;
+        this.ageYears = startAge;
+        this.massTons = startMass;
+    }
+
+    public void timePasses() {
+        ageYears *= 2;
+        massTons *= 8;
+        switch (type) {
+            case RED_GIANT -> type = StarType.WHITE_DWARF;
+            case SUN -> type = StarType.RED_GIANT;
+            case SUPERNOVA -> type = StarType.DEAD;
+            case WHITE_DWARF -> type = StarType.SUPERNOVA;
+            case DEAD -> {
+                ageYears *= 2;
+                massTons = 0;
+            }
+            default -> {
+            }
+        }
+    }
+
+    StarMemento getMemento() {
+        var state = new StarMementoInternal();
+        state.setAgeYears(ageYears);
+        state.setMassTons(massTons);
+        state.setType(type);
+        return state;
+    }
+
+    void setMemento(StarMemento memento) {
+        var state = (StarMementoInternal) memento;
+        this.type = state.getType();
+        this.ageYears = state.getAgeYears();
+        this.massTons = state.getMassTons();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s age: %d years mass: %d tons", type.toString(), ageYears, massTons);
+    }
+
+    private static class StarMementoInternal implements StarMemento {
+
+        private StarType type;
+        private int ageYears;
+        private int massTons;
+
+        // setters and getters ->
     ...
-  }
+    }
 }
 ```
 
@@ -176,7 +165,7 @@ Use the Memento pattern when
 * A direct interface to obtaining the state would expose implementation details and break the 
 object's encapsulation
 
-## Real world examples
+## Known uses
 
 * [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
 

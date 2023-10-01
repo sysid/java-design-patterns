@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -87,24 +84,36 @@ public interface KingdomFactory {
 }
 
 public class ElfKingdomFactory implements KingdomFactory {
+
+  @Override
   public Castle createCastle() {
     return new ElfCastle();
   }
+
+  @Override
   public King createKing() {
     return new ElfKing();
   }
+
+  @Override
   public Army createArmy() {
     return new ElfArmy();
   }
 }
 
 public class OrcKingdomFactory implements KingdomFactory {
+
+  @Override
   public Castle createCastle() {
     return new OrcCastle();
   }
+
+  @Override
   public King createKing() {
     return new OrcKing();
   }
+  
+  @Override
   public Army createArmy() {
     return new OrcArmy();
   }
@@ -139,35 +148,32 @@ In this example, we also used an enum to parameterize which type of kingdom fact
 ```java
 public static class FactoryMaker {
 
-  public enum KingdomType {
-    ELF, ORC
-  }
-
-  public static KingdomFactory makeFactory(KingdomType type) {
-    switch (type) {
-      case ELF:
-        return new ElfKingdomFactory();
-      case ORC:
-        return new OrcKingdomFactory();
-      default:
-        throw new IllegalArgumentException("KingdomType not supported.");
+    public enum KingdomType {
+        ELF, ORC
     }
-  }
+
+    public static KingdomFactory makeFactory(KingdomType type) {
+        return switch (type) {
+            case ELF -> new ElfKingdomFactory();
+            case ORC -> new OrcKingdomFactory();
+            default -> throw new IllegalArgumentException("KingdomType not supported.");
+        };
+    }
 }
 
-public static void main(String[] args) {
-  var app = new App();
+    public static void main(String[] args) {
+        var app = new App();
 
-  LOGGER.info("Elf Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-  LOGGER.info(app.getArmy().getDescription());
-  LOGGER.info(app.getCastle().getDescription());
-  LOGGER.info(app.getKing().getDescription());
+        LOGGER.info("Elf Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+        LOGGER.info(app.getArmy().getDescription());
+        LOGGER.info(app.getCastle().getDescription());
+        LOGGER.info(app.getKing().getDescription());
 
-  LOGGER.info("Orc Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-  -- similar use of the orc factory
-}
+        LOGGER.info("Orc Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+        --similar use of the orc factory
+    }
 ```
 
 ## Class diagram
@@ -196,13 +202,13 @@ Example use cases
 * Unit test case writing becomes much easier
 * UI tools for different OS
 
-## Consequences:
+## Consequences
 
 * Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
 * The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
 
-## Tutorial
+## Tutorials
 
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 

@@ -1,12 +1,11 @@
 ---
-layout: pattern
 title: Table Module
-folder: table-module
-permalink: /patterns/table-module/
-categories: Structural
-tags:
+category: Structural
+language: en
+tag:
  - Data access
 ---
+
 ## Intent
 Table Module organizes domain logic with one class per table in the database, and a single instance of a class contains the various procedures that will act on the data.
 
@@ -125,7 +124,7 @@ Use the Table Module Pattern when
 
 - [Transaction Script](https://java-design-patterns.com/patterns/transaction-script/)
 
-- Domain Model
+- [Domain Model](https://java-design-patterns.com/patterns/domain-model/)
 
 ## Credits
 

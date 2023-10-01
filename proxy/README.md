@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Proxy
-folder: proxy
-permalink: /patterns/proxy/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---
@@ -20,7 +17,7 @@ Provide a surrogate or placeholder for another object to control access to it.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a tower where the local wizards go to study their spells. The ivory tower can only be 
 > accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy 
@@ -142,7 +139,7 @@ applicable.
 * Protection proxy controls access to the original object. Protection proxies are useful when 
 objects should have different access rights.
 
-## Typical Use Case
+Typically, the proxy pattern is used to
 
 * Control access to another object
 * Lazy initialization
@@ -160,6 +157,7 @@ objects should have different access rights.
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
 * Mocking frameworks [Mockito](https://site.mockito.org/), 
 [Powermock](https://powermock.github.io/), [EasyMock](https://easymock.org/)
+* Apple UIKit's [UIAppearance](https://developer.apple.com/documentation/uikit/uiappearance)
 
 ## Related patterns
 
